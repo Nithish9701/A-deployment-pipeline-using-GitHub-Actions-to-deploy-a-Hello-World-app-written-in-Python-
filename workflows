@@ -1,0 +1,37 @@
+name: Deploy Hello World App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python or Node
+        uses: actions/setup-python@v2  # For Python
+        # uses: actions/setup-node@v2  # For Node.js
+        with:
+          python-version: 3.x  # For Python
+
+      - name: Install Dependencies
+        run: |
+          # For Python
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+          # For Node.js
+          # npm install
+
+      - name: Run App
+        run: |
+          # For Python
+          python app.py
+          
+          # For Node.js
+          # node app.js
